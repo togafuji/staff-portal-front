@@ -1,0 +1,52 @@
+Header:
+  title: 職員ポータル
+  nav:
+    home: Home
+    chat: チャット
+    schedule: スケジュール
+    attendance: 勤怠報告
+    share: 共有
+    config: 設定
+
+Home:
+  title: お知らせ
+  unread: 未読
+  nopost: まだ投稿されたデータがありません
+  button:
+    next: 次のページ
+    back: 前のページ
+    post: 投稿する
+  BulletinBoard:
+    title: タイトル
+    content: 投稿内容
+  postform:
+    title: 投稿ページ
+    edit: 編集ページ
+    input: 入力
+    post: 投稿
+    load: ロード中...
+    attachment: 添付ファイル
+    new: 新規投稿
+  detail:
+    content: 投稿内容
+    modal:
+      confirm: 削除確認
+      caution: このお知らせを削除してもよろしいですか？
+    cancel: キャンセル
+    delete: 削除する
+
+Login:
+  title: ログイン
+  user: ユーザー名
+  email: Eメール
+  password: パスワード
+  button: ログイン
+  out: ログアウト
+
+Button:
+  back: 戻る
+  preview: プレビュー
+  edit: 編集する
+  delete: 削除する
+  save: 編集内容を保存する
+  submit: 投稿する

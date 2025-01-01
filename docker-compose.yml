@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:80' # ローカルの3000番ポートをコンテナの80番ポートにマッピング
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped

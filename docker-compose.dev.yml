@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000' # ローカルの3000番ポートをコンテナの3000番ポートにマッピング
+    volumes:
+      - .:/app # ローカルのプロジェクトディレクトリをコンテナの/appにマウント
+      - /app/node_modules # node_modulesをボリュームとして保持
+    environment:
+      - NODE_ENV=development
+    command: npm start # 開発サーバーを起動
+    restart: unless-stopped

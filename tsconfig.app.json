@@ -1,0 +1,23 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "postcss.config.ts",
+    "src/**/*.ts",
+    "src/**/*.d.ts"
+  ],
+  "exclude": ["src/**/__tests__/*", "node_modules", "**/*.vue"],
+  "files": ["src/main.ts"],
+  "compilerOptions": {
+    "composite": false,
+    "declaration": false,
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "noEmit": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}

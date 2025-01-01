@@ -1,0 +1,40 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src", // ベースURLをsrcディレクトリに設定
+    "paths": {
+      "@/*": ["./*"], // @エイリアスをsrcディレクトリにマッピング
+      "@pack/*": ["src/pack/*"]
+    },
+    "skipLibCheck": true, // vueファイル含む.d.ts チェックをスキップ
+    "emitDeclarationOnly": false,
+    "allowJs": true,
+    "declaration": false,
+    "noEmit": false,
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "types": ["jest"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "**/*.vue"],
+  "files": [],
+  "references": [
+    {
+      "path": "./tsconfig.node.json"
+    },
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.vitest.json"
+    }
+  ]
+}
