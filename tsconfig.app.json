@@ -15,7 +15,7 @@
     "declaration": false,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "noEmit": false,
+    "noEmit": true,
     "paths": {
       "@/*": ["./src/*"]
     }
