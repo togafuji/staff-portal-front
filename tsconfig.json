@@ -9,7 +9,7 @@
     "emitDeclarationOnly": false,
     "allowJs": true,
     "declaration": false,
-    "noEmit": false,
+    "noEmit": true,
     "target": "esnext",
     "module": "esnext",
     "strict": true,
@@ -23,7 +23,14 @@
     "types": ["jest"],
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "tests/**/*.ts",
+    "src/**/*.d.ts",
+    "**/*.d.ts"
+  ],
   "exclude": ["node_modules", "**/*.vue"],
   "files": [],
   "references": [
