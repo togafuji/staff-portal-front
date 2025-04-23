@@ -1,6 +1,6 @@
 // src/repositories/bulletinBoard.repository.ts
 
-import axios from '@/axios' // カスタム Axios インスタンスをインポート
+import axios from '@/apiClient' // カスタム Axios インスタンスをインポート
 import type {
   BulletinBoardItem,
   CreateBulletinBoardPayload,

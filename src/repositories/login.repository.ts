@@ -1,5 +1,5 @@
 // repositories/login.repository.ts
-import axios from '@/axios'
+import axios from '@/apiClient'
 import { LoginConstants } from '@/constants/login.constants'
 import type { LoginRequest, LoginResponse } from '@/entity/login.entity'
 

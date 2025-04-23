@@ -39,14 +39,20 @@
 
           <!-- タイトル -->
           <span
-            :class="{ 'text-gray-500': readStatus[post.id], 'text-black': !readStatus[post.id] }"
+            :class="{
+              'text-gray-500': isRead(post.id).value,
+              'text-black': !isRead(post.id).value
+            }"
             class="w-2/4 text-center text-xl"
           >
             {{ post.title }}
           </span>
 
           <!-- 未読 -->
-          <span v-if="!readStatus[post.id]" class="text-orange-500 font-bold w-1/4 text-right px-3">
+          <span
+            v-if="!isRead(post.id).value"
+            class="text-orange-500 font-bold w-1/4 text-right px-3"
+          >
             {{ $t('Home.unread') }}
           </span>
         </div>
@@ -76,7 +82,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { useBulletinBoard } from '@/composition/bulletinBoard.composition'
-import { useReadStatus } from '@/composition/readStatus.composition'
 import PaginationControl from '@/components/form/Pagination.vue'
 
 const {
@@ -89,10 +94,9 @@ const {
   goToDetail,
   goToCreatePost,
   fetchPost,
-  formatDate
+  formatDate,
+  isRead
 } = useBulletinBoard()
-
-const { readStatus } = useReadStatus()
 
 onMounted(async () => {
   await fetchPost()

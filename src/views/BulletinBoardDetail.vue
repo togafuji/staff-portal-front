@@ -86,7 +86,6 @@ export default defineComponent({
     onMounted(async () => {
       try {
         await store.fetchPostDetail(id)
-        console.log('Post Detail:', store.postDetail) // デバッグ用ログ
         if (store.postDetail) {
           await markAsRead(authStore.userId as number, id)
           formData.value = {

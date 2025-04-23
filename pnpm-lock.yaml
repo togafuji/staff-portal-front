@@ -24,7 +24,7 @@ importers:
         specifier: ^10.4.20
         version: 10.4.21(postcss@8.5.3)
       axios:
-        specifier: ^1.7.9
+        specifier: ^1.8.4
         version: 1.8.4
       pinia:
         specifier: ^2.3.0

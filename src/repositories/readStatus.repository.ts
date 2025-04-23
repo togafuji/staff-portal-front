@@ -1,4 +1,4 @@
-import axios from '@/axios'
+import axios from '@/apiClient'
 
 export const fetchReadStatus = async (userId: number, bulletinBoardId: number) => {
   const response = await axios.get(`/bulletin_boards/${bulletinBoardId}//read_status`, {

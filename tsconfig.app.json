@@ -26,7 +26,8 @@
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "paths": {
       "@/*": ["./*"],
-      "@pack/*": ["./pack/*"]
+      "@pack/*": ["./pack/*"],
+      "*": ["node_modules/*", "src/*"]
     }
   }
 }

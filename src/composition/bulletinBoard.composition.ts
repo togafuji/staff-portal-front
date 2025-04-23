@@ -25,10 +25,11 @@ export const useBulletinBoard = () => {
 
     // 未読フラグを更新
     for (const post of store.posts) {
-      fetchReadStatus(userId, post.id).then((status) => {
-        readStatus.value[post.id] = status.is_read
-      })
+      const status = await fetchReadStatus(userId, post.id) // 非同期処理を待機
+      readStatus.value[post.id] = status.is_read
     }
+
+    console.log('Updated readStatus:', readStatus.value) // デバッグ用ログ
   }
 
   const fetchPostDetail = async (id: number) => {
@@ -76,6 +77,8 @@ export const useBulletinBoard = () => {
     return new Date(dateString).toLocaleDateString(undefined, options)
   }
 
+  const isRead = (id: number) => computed(() => Boolean(readStatus.value[id]))
+
   return {
     paginatedPosts,
     currentPage: computed(() => store.currentPage),
@@ -87,6 +90,7 @@ export const useBulletinBoard = () => {
     goToCreatePost,
     formatDate,
     fetchPost,
-    fetchPostDetail
+    fetchPostDetail,
+    isRead
   }
 }
