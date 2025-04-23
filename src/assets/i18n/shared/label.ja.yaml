@@ -15,7 +15,7 @@ Home:
   button:
     next: 次のページ
     back: 前のページ
-    post: 投稿する
+    post: 投稿
   BulletinBoard:
     title: タイトル
     content: 投稿内容

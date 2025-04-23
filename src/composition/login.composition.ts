@@ -36,7 +36,6 @@ export function useAuth() {
           }
 
           authStore.login(token, userName, userIcon, userId) // ストアの更新
-          console.log('token saved to localStorage') // デバッグ用ログ
         }
       }
 

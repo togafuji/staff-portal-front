@@ -1,4 +1,3 @@
-<!-- src/views/BulletinBoardEdit.vue -->
 <template>
   <div class="container mx-auto p-4">
     <div v-if="loading">
@@ -15,46 +14,35 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import BulletinBoardPostForm from '@/components/form/BulletinBoardPostForm.vue'
-import { useBulletinBoardStore } from '@/stores/bulletinBoard.store'
+<script setup lang="ts">
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import BulletinBoardPostForm from '@/components/form/BulletinBoardPostForm.vue';
+import { useBulletinBoardStore } from '@/stores/bulletinBoard.store';
 
-export default defineComponent({
-  name: 'BulletinBoardEdit',
-  components: { BulletinBoardPostForm },
-  setup() {
-    const route = useRoute()
-    const router = useRouter()
-    const store = useBulletinBoardStore()
+const route = useRoute();
+const router = useRouter();
+const bulletinBoardStore = useBulletinBoardStore();
 
-    const postId = Number(route.params.id)
-    const postDetail = ref({ title: '', content: '' })
-    const loading = ref(true)
+const postId = ref<number | null>(null);
+const postDetail = ref<{ title: string; content: string } | null>(null);
+const loading = ref(true);
 
-    onMounted(async () => {
-      try {
-        await store.fetchPostDetail(postId)
-        if (store.postDetail) {
-          postDetail.value = {
-            title: store.postDetail.title,
-            content: store.postDetail.content
-          }
-        }
-      } catch (error) {
-        alert('投稿詳細の取得に失敗しました。')
-        router.push('/home')
-      } finally {
-        loading.value = false
-      }
-    })
-
-    return {
-      postId,
-      postDetail,
-      loading
+onMounted(async () => {
+  postId.value = Number(route.params.id);
+  if (postId.value) {
+    try {
+      await bulletinBoardStore.fetchPostDetail(postId.value);
+      postDetail.value = bulletinBoardStore.postDetail;
+    } catch (error) {
+      console.error('Failed to fetch post detail:', error);
+      router.push('/error');
+    } finally {
+      loading.value = false;
     }
+  } else {
+    router.push('/error');
   }
-})
+});
 </script>
+

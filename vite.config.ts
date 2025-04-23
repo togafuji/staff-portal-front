@@ -9,11 +9,16 @@ import postcss from './postcss.config'
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
-    host: true
+    port: 3000, // 開発サーバーのポートを3000に設定
+    host: true, // Docker環境でホストを有効化
+    watch: {
+      usePolling: true // Docker環境でのホットリロードを有効化
+    }
   },
   plugins: [vue(), yaml(), vueJsx(), VueDevTools()],
   css: {
-    postcss},
+    postcss
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src')
@@ -21,7 +26,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    environment: 'jsdom',
+    environment: 'jsdom'
   },
   optimizeDeps: {
     include: ['yaml']

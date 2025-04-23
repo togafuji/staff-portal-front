@@ -6,7 +6,12 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '3000:80' # ローカルの3000番ポートをコンテナの80番ポートにマッピング
+      - '3000:3000' # 開発環境用ポート
+    volumes:
+      - .:/app # ソースコードをマウント
+      - /app/node_modules # node_modulesはコンテナ内で管理
     environment:
-      - NODE_ENV=production
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true # ホットリロード用
+    command: npm run dev # 開発用コマンド
     restart: unless-stopped
