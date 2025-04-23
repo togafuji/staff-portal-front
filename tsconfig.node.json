@@ -1,21 +1,15 @@
 {
-  "extends": "@tsconfig/node20/tsconfig.json",
-  "include": [
-    "vite.config.*",
-    "vitest.config.*",
-    "cypress.config.*",
-    "nightwatch.conf.*",
-    "playwright.config.*",
-    "./postcss.config.ts"
-  ],
-  "exclude": ["node_modules"],
+  "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
-    "composite": false,
-    "noEmit": false,
-    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.node.tsbuildinfo",
-
+    "composite": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "types": ["node"]
-  }
+    "moduleResolution": "node",
+    "allowJs": false,
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "noEmit": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true
+  },
+  "include": ["vite.config.*", "vitest.config.*", "tests/**/*.ts"]
 }

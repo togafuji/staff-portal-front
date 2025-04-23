@@ -1,5 +1,5 @@
 # Stage 1: ビルドステージ
-FROM node:16-alpine AS build
+FROM node:18-alpine AS build
 
 # 作業ディレクトリを設定
 WORKDIR /app
@@ -16,20 +16,23 @@ COPY . .
 # アプリケーションをビルド
 RUN npm run build
 
-# Stage 2: 本番ステージ
-FROM nginx:stable-alpine
+# Stage 2: 開発環境（ホットリロード用）
+FROM node:18-alpine AS development
 
-# Nginxの設定ファイルを削除
-RUN rm -rf /usr/share/nginx/html/*
+# 作業ディレクトリを設定
+WORKDIR /app
 
-# ビルドされたファイルをNginxの公開ディレクトリにコピー
-COPY --from=build /app/dist /usr/share/nginx/html
+# package.jsonとpackage-lock.jsonをコピー
+COPY package*.json ./
 
-# カスタムNginx設定（オプション）
-# COPY nginx.conf /etc/nginx/nginx.conf
+# 依存関係をインストール
+RUN npm install
+
+# ソースコードをコピー
+COPY . .
 
 # ポートを公開
 EXPOSE 3000
 
-# デフォルトのコマンドを実行
-CMD ["nginx", "-g", "daemon off;"]
+# 開発用のホットリロードを有効にする
+CMD ["npm", "run", "dev"]

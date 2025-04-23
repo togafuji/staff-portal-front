@@ -1,23 +1,32 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": [
-    "env.d.ts",
-    "src/**/*",
-    "src/**/*.vue",
-    "postcss.config.ts",
-    "src/**/*.ts",
-    "src/**/*.d.ts"
-  ],
-  "exclude": ["src/**/__tests__/*", "node_modules", "**/*.vue"],
-  "files": ["src/main.ts"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "postcss.config.ts"],
+  "exclude": ["src/**/__tests__/*", "node_modules"],
   "compilerOptions": {
-    "composite": false,
-    "declaration": false,
+    "composite": true,
+    "declaration": true, // 必須
+    "emitDeclarationOnly": false,
     "skipLibCheck": true,
-    "baseUrl": ".",
-    "noEmit": true,
+    "baseUrl": "./src",
+    "outDir": "./dist",
+    "noEmit": false, // emit は必須
+    "allowImportingTsExtensions": false,
+    "allowJs": false,
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "types": ["jest"],
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"],
+      "@pack/*": ["./pack/*"]
     }
   }
 }

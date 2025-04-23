@@ -1,7 +1,7 @@
 import axios from 'axios'
 // カスタム Axios インスタンスの作成
 const instance = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3010/api/v1', // バックエンドのベースURLに変更
+  baseURL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:3010/api/v1',
   headers: {
     'Content-Type': 'application/json',
     Accept: 'application/json' // JSONレスポンスを期待

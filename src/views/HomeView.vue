@@ -39,14 +39,14 @@
 
           <!-- タイトル -->
           <span
-            :class="{ 'text-gray-500': post.isRead, 'text-black': !post.isRead }"
+            :class="{ 'text-gray-500': readStatus[post.id], 'text-black': !readStatus[post.id] }"
             class="w-2/4 text-center text-xl"
           >
             {{ post.title }}
           </span>
 
           <!-- 未読 -->
-          <span v-if="!post.isRead" class="text-orange-500 font-bold w-1/4 text-right px-3">
+          <span v-if="!readStatus[post.id]" class="text-orange-500 font-bold w-1/4 text-right px-3">
             {{ $t('Home.unread') }}
           </span>
         </div>
@@ -73,46 +73,28 @@
   </div>
 </template>
 
-<script>
-import { defineComponent, onMounted } from 'vue'
-import PaginationControl from '@/components/form/Pagination.vue'
+<script setup lang="ts">
+import { onMounted } from 'vue'
 import { useBulletinBoard } from '@/composition/bulletinBoard.composition'
+import { useReadStatus } from '@/composition/readStatus.composition'
+import PaginationControl from '@/components/form/Pagination.vue'
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    PaginationControl
-  },
-  setup() {
-    const {
-      paginatedPosts,
-      currentPage,
-      totalPages,
-      loading,
-      error,
-      fetchPosts,
-      handleChangePage,
-      goToDetail,
-      goToCreatePost,
-      formatDate
-    } = useBulletinBoard()
+const {
+  paginatedPosts,
+  currentPage,
+  totalPages,
+  loading,
+  error,
+  handleChangePage,
+  goToDetail,
+  goToCreatePost,
+  fetchPost,
+  formatDate
+} = useBulletinBoard()
 
-    // データ取得のトリガー
-    onMounted(async () => {
-      await fetchPosts() // データを取得
-    })
+const { readStatus } = useReadStatus()
 
-    return {
-      paginatedPosts,
-      currentPage,
-      totalPages,
-      loading,
-      error,
-      handleChangePage,
-      goToDetail,
-      goToCreatePost,
-      formatDate
-    }
-  }
+onMounted(async () => {
+  await fetchPost()
 })
 </script>
